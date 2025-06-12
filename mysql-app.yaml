@@ -1,0 +1,98 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: mysql-57-rhel7
+      app.kubernetes.io/component: mysql-57-rhel7
+      app.kubernetes.io/instance: mysql-57-rhel7
+    name: mysql-57-rhel7
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: registry.access.redhat.com/rhscl/mysql-57-rhel7:5.7-47
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/rhscl/mysql-57-rhel7:5.7-47
+      generation: null
+      importPolicy:
+        importMode: Legacy
+      name: 5.7-47
+      referencePolicy:
+        type: ""
+  status:
+    dockerImageRepository: ""
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"mysql-57-rhel7:5.7-47"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mysql-57-rhel7\")].image"}]'
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: mysql-57-rhel7
+      app.kubernetes.io/component: mysql-57-rhel7
+      app.kubernetes.io/instance: mysql-57-rhel7
+    name: mysql-57-rhel7
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deployment: mysql-57-rhel7
+    strategy: {}
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          deployment: mysql-57-rhel7
+      spec:
+        containers:
+        - image: ' '
+          name: mysql-57-rhel7
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          env:
+          - name: MYSQL_user
+            valueFrom:
+              secretKeyRef:
+                name: wp-secret
+                key: user
+          - name: MYSQL_password
+            valueFrom:
+              secretKeyRef:
+                name: wp-secret
+                key: password
+          resources: {}
+  status: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: mysql-57-rhel7
+      app.kubernetes.io/component: mysql-57-rhel7
+      app.kubernetes.io/instance: mysql-57-rhel7
+    name: mysql-57-rhel7
+  spec:
+    ports:
+    - name: 3306-tcp
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      deployment: mysql-57-rhel7
+  status:
+    loadBalancer: {}
+kind: List
+metadata: {}
