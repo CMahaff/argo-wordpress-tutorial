@@ -71,6 +71,11 @@ items:
               secretKeyRef:
                 name: wp-secret
                 key: password
+          - name: MYSQL_database
+            valueFrom:
+              secretKeyRef:
+                name: wp-secret
+                key: database
           resources: {}
   status: {}
 - apiVersion: v1
