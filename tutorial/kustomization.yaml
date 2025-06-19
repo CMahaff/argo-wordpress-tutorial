@@ -2,8 +2,8 @@
 kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 resources:
-- tutorial/mysql-app.yaml
-- tutorial/wordpress-app.yaml
-- tutorial/wordpress-sa-permission.yaml
-- tutorial/wordpress-sa.yaml
-- tutorial/wp-secret.yaml
+- mysql-app.yaml
+- wordpress-app.yaml
+- wordpress-sa-permission.yaml
+- wordpress-sa.yaml
+- wp-secret.yaml
