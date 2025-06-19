@@ -72,6 +72,11 @@ items:
               secretKeyRef:
                 name: wp-secret
                 key: password
+          - name: WORDPRESS_DB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: wp-secret
+                key: database
           ports:
           - containerPort: 80
             protocol: TCP
