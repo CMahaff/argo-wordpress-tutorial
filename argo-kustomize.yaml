@@ -1,0 +1,9 @@
+# namePrefix: kustomize-
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+resources:
+- tutorial/mysql-app.yaml
+- tutorial/wordpress-app.yaml
+- tutorial/wordpress-sa-permission.yaml
+- tutorial/wordpress-sa.yaml
+- tutorial/wp-secret.yaml
