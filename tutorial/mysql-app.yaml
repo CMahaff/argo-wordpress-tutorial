@@ -61,17 +61,17 @@ items:
           - containerPort: 3306
             protocol: TCP
           env:
-          - name: MYSQL_user
+          - name: MYSQL_USER
             valueFrom:
               secretKeyRef:
                 name: wp-secret
                 key: user
-          - name: MYSQL_password
+          - name: MYSQL_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: wp-secret
                 key: password
-          - name: MYSQL_database
+          - name: MYSQL_DATABASE
             valueFrom:
               secretKeyRef:
                 name: wp-secret
