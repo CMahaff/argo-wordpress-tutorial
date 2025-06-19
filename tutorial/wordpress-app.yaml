@@ -62,12 +62,12 @@ items:
             value: mysql
           - name: WORDPRESS_DB_NAME
             value: wordpress
-          - name: WORDPRESS_DB_user
+          - name: WORDPRESS_DB_USER
             valueFrom:
               secretKeyRef:
                 name: wp-secret
                 key: user
-          - name: WORDPRESS_DB_password
+          - name: WORDPRESS_DB_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: wp-secret
